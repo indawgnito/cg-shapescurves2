@@ -73,8 +73,8 @@ class Renderer {
     this.drawBezierCurve(
       { x: 400, y: 400 },
       { x: 500, y: 500 },
-      { x: 600, y: 600 },
-      { x: 700, y: 200 },
+      { x: 550, y: 500 },
+      { x: 600, y: 200 },
       this.num_curve_sections,
       [100, 0, 255, 255],
       framebuffer
@@ -392,6 +392,13 @@ class Renderer {
     let y = p0.y;
     let t = 0;
 
+    if (this.show_points) {
+      this.drawVertex(p0, color, framebuffer);
+      this.drawVertex(p3, color, framebuffer);
+      this.drawX(p1, color, framebuffer);
+      this.drawX(p2, color, framebuffer);
+    }
+
     for (let i = 0; i < num_edges; i++) {
       // increment t value
       t += dt;
@@ -446,6 +453,14 @@ class Renderer {
     let x = center.x + radius * Math.cos(t);
     let y = center.y + radius * Math.sin(t);
 
+    if (this.show_points) {
+      this.drawVertex(
+        { x: Math.floor(x), y: Math.floor(y) },
+        color,
+        framebuffer
+      );
+    }
+
     for (let i = 0; i < num_edges; i++) {
       // increment t by dt
       t += dt;
@@ -466,6 +481,14 @@ class Renderer {
       // update x and y values
       x = new_x;
       y = new_y;
+
+      if (this.show_points) {
+        this.drawVertex(
+          { x: Math.floor(x), y: Math.floor(y) },
+          color,
+          framebuffer
+        );
+      }
     }
   }
 
@@ -487,6 +510,12 @@ class Renderer {
         framebuffer
       );
     }
+
+    if (this.show_points) {
+      for (let i = 0; i < vertex_list.length; i++) {
+        this.drawVertex(vertex_list[i], color, framebuffer);
+      }
+    }
   }
 
   // v:            object {x: __, y: __}
@@ -494,6 +523,47 @@ class Renderer {
   // framebuffer:  canvas ctx image data
   drawVertex(v, color, framebuffer) {
     // TODO: draw some symbol (e.g. small rectangle, two lines forming an X, ...) centered at position `v`
+
+    // small square, side length 6px
+    this.drawLine(
+      { x: v.x - 3, y: v.y - 3 },
+      { x: v.x - 3, y: v.y + 3 },
+      color,
+      framebuffer
+    );
+    this.drawLine(
+      { x: v.x - 3, y: v.y + 3 },
+      { x: v.x + 3, y: v.y + 3 },
+      color,
+      framebuffer
+    );
+    this.drawLine(
+      { x: v.x + 3, y: v.y + 3 },
+      { x: v.x + 3, y: v.y - 3 },
+      color,
+      framebuffer
+    );
+    this.drawLine(
+      { x: v.x + 3, y: v.y - 3 },
+      { x: v.x - 3, y: v.y - 3 },
+      color,
+      framebuffer
+    );
+  }
+
+  drawX(v, color, framebuffer) {
+    this.drawLine(
+      { x: v.x - 4, y: v.y - 4 },
+      { x: v.x + 4, y: v.y + 4 },
+      color,
+      framebuffer
+    );
+    this.drawLine(
+      { x: v.x - 4, y: v.y + 4 },
+      { x: v.x + 4, y: v.y - 4 },
+      color,
+      framebuffer
+    );
   }
 
   /***************************************************************
