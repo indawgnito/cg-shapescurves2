@@ -287,18 +287,18 @@ class Renderer {
 
     // draw vertical line of letter a
     this.drawLine(
-      { x: 425, y: 200 },
-      { x: 420, y: 260 },
+      { x: 420, y: 205 },
+      { x: 415, y: 265 },
       [0, 0, 0, 255],
       framebuffer
     );
 
     // draw curve of letter a
     this.drawBezierCurve(
-      { x: 420, y: 250 },
-      { x: 400, y: 310 },
-      { x: 370, y: 170 },
-      { x: 425, y: 215 },
+      { x: 415, y: 255 },
+      { x: 395, y: 315 },
+      { x: 365, y: 175 },
+      { x: 420, y: 220 },
       this.num_curve_sections,
       [0, 0, 0, 255],
       framebuffer
@@ -306,18 +306,18 @@ class Renderer {
 
     // draw vertical line of letter m
     this.drawLine(
-      { x: 250, y: 205 },
-      { x: 250, y: 280 },
+      { x: 460, y: 205 },
+      { x: 460, y: 280 },
       [0, 0, 0, 255],
       framebuffer
     );
 
     // draw curve one for letter m
     this.drawBezierCurve(
-      { x: 250, y: 255 },
-      { x: 265, y: 300 },
-      { x: 305, y: 290 },
-      { x: 300, y: 205 },
+      { x: 460, y: 255 },
+      { x: 475, y: 300 },
+      { x: 515, y: 290 },
+      { x: 510, y: 205 },
       this.num_curve_sections,
       [0, 0, 0, 255],
       framebuffer
@@ -325,10 +325,48 @@ class Renderer {
 
     // draw curve two for letter m
     this.drawBezierCurve(
-      { x: 250, y: 255 },
-      { x: 265, y: 300 },
-      { x: 305, y: 290 },
-      { x: 300, y: 205 },
+      { x: 505, y: 255 },
+      { x: 520, y: 300 },
+      { x: 560, y: 290 },
+      { x: 555, y: 205 },
+      this.num_curve_sections,
+      [0, 0, 0, 255],
+      framebuffer
+    );
+
+    // draw vertical line for letter i
+    this.drawLine(
+      { x: 602, y: 270 },
+      { x: 602, y: 205 },
+      [0, 0, 0, 255],
+      framebuffer
+    );
+    // draw dot for letter i
+    this.drawConvexPolygon(
+      [
+        { x: 600, y: 281 },
+        { x: 600, y: 284 },
+        { x: 603, y: 284 },
+        { x: 603, y: 281 },
+      ],
+      [0, 0, 0, 255],
+      framebuffer
+    );
+
+    // draw vertical line of letter n
+    this.drawLine(
+      { x: 650, y: 205 },
+      { x: 650, y: 280 },
+      [0, 0, 0, 255],
+      framebuffer
+    );
+
+    // draw curve for letter n
+    this.drawBezierCurve(
+      { x: 650, y: 255 },
+      { x: 665, y: 300 },
+      { x: 705, y: 290 },
+      { x: 700, y: 205 },
       this.num_curve_sections,
       [0, 0, 0, 255],
       framebuffer
